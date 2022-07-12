@@ -19,7 +19,7 @@ df = text_lines.tolist()
 
 
 
-bot = telebot.TeleBot('5570274268:AAFvaYDVMo2kEZ-5_g3FSHItu6rLm8wjF5k')
+bot = telebot.TeleBot('BOT ID')
 
 #raz = (f"Я на раз на раз-два, раз, два, три, четыре! Панама в эфире!")
 
