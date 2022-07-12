@@ -74,10 +74,7 @@ def user_message(message):
         bot.send_message(message.chat.id, f"Я на раз на раз-два, раз, два, три, четыре! Панама в эфире!", parse_mode='html')
     elif message.text == "1":
         bot.send_message(message.chat.id, f"Я на раз на раз-два, раз, два, три, четыре! Панама в эфире!", parse_mode='html')
-    elif message.text == "Три!" \
-            or message.text == "три!" \
-            or message.text == "Три" \
-            or message.text == "три":
+    elif message.text in ("Три!", "три", "Три", "три!):
         bot.send_message(message.chat.id, f"Жопку подотри!", parse_mode='html')
 
     elif message.text == "Если вы понимаете о чем я":
