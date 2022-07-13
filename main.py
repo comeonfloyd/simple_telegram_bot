@@ -22,7 +22,9 @@ def calculate2(pm):
     bot.register_next_step_handler(sent_msg2, numbers_nds2)
 
 def numbers_nds2(pm):
-    number2 = pm.text
+    try: number2 = pm.text
+    except TypeError:
+        number2 = 0
     sent_msg2 = bot.send_message(pm.chat.id, f"Какой размер НДС?")
     bot.register_next_step_handler(sent_msg2, calculation2, number2)
 
