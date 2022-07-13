@@ -5,33 +5,18 @@ import telebot
 import pandas as pd
 import random
 
-arr = ["Модель простая как три сапога",
-       "Тут что-то не по-русском написано",
-       "Три дня работаешь! Уже эксперт!",
-       "А ты нам чо?",
-       "Ты делаешь недостаточно!",
-       "Кассовый разрыв!",
-       "Док",
-       "Зовите меня Мэрфи",
-       "Фёдор Меркурьев и ВИА Королева",
-       "Ща я ей устный ВПР покажу",
-       ]
-
-text_lines = pd.read_excel('Цитаты.xlsx').to_numpy()
+text_lines = pd.read_excel('Цитаты.xlsx').to_numpy() # Загружаем эксельку с цитатами и её загняем в лист
 df = text_lines.tolist()
-
-
 
 bot = telebot.TeleBot('')
 
-#raz = (f"Я на раз на раз-два, раз, два, три, четыре! Панама в эфире!")
 
 @bot.message_handler(commands=['start'])
 def start(message):
     mess = f'Ты делаешь недостаточно, <b>{message.from_user.first_name}</b> !'
     bot.send_message(message.chat.id, mess, parse_mode='html')
 
-@bot.message_handler(commands=['nds'])
+@bot.message_handler(commands=['nds']) # Команда для расчёта НДС, изучал как бот обрабатывает инпут и что с ним дальше можно сделать
 def calculate2(pm):
     sent_msg2 = bot.send_message(pm.chat.id, "Какая сумма? Введите в формате с точкой")
     bot.register_next_step_handler(sent_msg2, numbers_nds2)
@@ -47,7 +32,7 @@ def calculation2(pm, number2):
     bot.send_message(pm.chat.id, data_text2)
 
 
-@bot.message_handler(commands=['nds_reg'])
+@bot.message_handler(commands=['nds_reg']) # Команда для расчёта обратного НДС, изучал как бот обрабатывает инпут и что с ним дальше можно сделать
 def calculate(pm):
     sent_msg = bot.send_message(pm.chat.id, "Какая сумма? Введите в формате с точкой")
     bot.register_next_step_handler(sent_msg, numbers_nds)
@@ -64,14 +49,14 @@ def calculation(pm, number):
 
 
 
-@bot.message_handler(commands=['weather'])
+@bot.message_handler(commands=['weather']) # Продолжаем изучать команды
 
 def weather(message):
     url = 'https://yandex.ru/pogoda/'
     bot.send_message(message.chat.id, url)
 
 
-@bot.message_handler()
+@bot.message_handler() # Большая страшная штука для реакции на сообщения
 def user_message(message):
     if message.text == "раз":
         bot.send_message(message.chat.id, f"Я на раз на раз-два, раз, два, три, четыре! Панама в эфире!", parse_mode='html')
@@ -109,18 +94,4 @@ def user_message(message):
         video = open("timur.mp4", 'rb')
         bot.send_video(message.chat.id, video, protect_content=True)
 
-#@bot.message_handler()
-#def command(message):
- #   line = random.choice(text_lines)
-  #  bot.send_message(message.chat.id, str(text_lines.sample()))
-
-
-
-
-
-
-
-
-
 bot.polling(none_stop=True)
-
