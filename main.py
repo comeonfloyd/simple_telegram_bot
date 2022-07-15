@@ -64,6 +64,8 @@ def user_message(message):
         bot.send_message(message.chat.id, f"Я на раз на раз-два, раз, два, три, четыре! Панама в эфире!", parse_mode='html')
     elif message.text == "1":
         bot.send_message(message.chat.id, f"Я на раз на раз-два, раз, два, три, четыре! Панама в эфире!", parse_mode='html')
+    #elif re.match(r'(?i)^три[!.?]?$, message.text): - надо протестить
+    
     elif message.text in ("Три!", "три", "Три", "три!):
         bot.send_message(message.chat.id, f"Жопку подотри!", parse_mode='html')
 
